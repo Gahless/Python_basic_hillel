@@ -22,15 +22,15 @@ rebmun = r + e + b + m + u + n
 if number % 1000000 == 0:
     print('000000')
 elif number % 100000 == 0:
-    print('00000' + str(rebmun)) #тут без строки не вывести 0 в начале, но я не провожу с ней операций
+    print('00000', rebmun, sep = '')
 elif number % 10000 == 0:
-    print('0000' + str(rebmun))
+    print('0000', rebmun, sep = '')
 elif number % 1000 == 0:
-    print('000' + str(rebmun))
+    print('000', rebmun, sep = '')
 elif number % 100 == 0:
-    print('00' + str(rebmun))
+    print('00', rebmun, sep = '')
 elif number % 10 == 0:
-    print('0' + str(rebmun))
+    print('0', rebmun, sep = '')
 else:
     print(rebmun)
 
@@ -50,14 +50,14 @@ else:
 # if number % 1000000 == 0:
 #     print('000000')
 # elif number % 100000 == 0:
-#     print('00000' + str(reversed_number)) #тут без строки не вывести 0 в начале, но я не провожу с ней операций
+#     print('00000', reversed_number, sep = '')
 # elif number % 10000 == 0:
-#     print('0000' + str(reversed_number))
+#     print('0000', reversed_number, sep = '')
 # elif number % 1000 == 0:
-#     print('000' + str(reversed_number))
+#     print('000', reversed_number, sep = '')
 # elif number % 100 == 0:
-#     print('00' + str(reversed_number))
+#     print('00', reversed_number, sep = '')
 # elif number % 10 == 0:
-#     print('0' + str(reversed_number))
+#     print('0', reversed_number, sep = '')
 # else:
 #     print(reversed_number)

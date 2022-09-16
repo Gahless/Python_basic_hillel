@@ -14,11 +14,11 @@ m *= 100
 mun = m + u + n
 
 if num % 1000 == 0:
-    print('000') #тут без строки не вывести 0 в начале, но я не провожу с ней операций
+    print('000')
 elif num % 100 == 0:
-    print('00' + str(mun))
+    print('00', mun, sep = '')
 elif num % 10 == 0:
-    print('0' + str(mun))
+    print('0', mun, sep = '')
 else:
     print(mun)
 
@@ -32,10 +32,10 @@ else:
 # reversed_number = digit_3 * 100 + digit_2 * 10 + digit_1
 #
 # if number % 1000 == 0:
-#     print('000') #тут без строки не вывести 0 в начале, но я не провожу с ней операций
+#     print('000')
 # elif number % 100 == 0:
-#     print('00' + str(reversed_number))
+#     print('00', reversed_number, sep = '')
 # elif number % 10 == 0:
-#     print('0' + str(reversed_number))
+#     print('0', reversed_number, sep = '')
 # else:
 #     print(reversed_number)
