@@ -2,7 +2,6 @@
 A = int(input('Введите число "А"'))
 B = int(input('Введите число "B"'))
 
-A += A #Чтобы А не входило в диапазон
 summ = 0
 
 while A < B:
@@ -15,7 +14,6 @@ print('Итог :', summ)
 # A = int(input('Введите число "А"'))
 # B = int(input('Введите число "B"'))
 #
-# A += A
 # summ = 0
 #
 # while A < B:
