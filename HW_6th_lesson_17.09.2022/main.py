@@ -34,4 +34,3 @@ while char_number != N:
     char_number += 1
     print(' ' * space_number + char * char_number)
     space_number -= 1
-
