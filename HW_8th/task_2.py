@@ -1,7 +1,7 @@
 
 length = int(input('Задайте длину последовательности фибаначи: '))
 
-helper_1 = 1
+helper_1 = 0
 helper_2 = 1
 
 while length > 0:
