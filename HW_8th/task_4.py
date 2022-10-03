@@ -30,4 +30,3 @@ print('\nВаш пароль:\n')
 
 for case in symbols_pool:
     print(random.choice(case), end='')
-
