@@ -9,14 +9,10 @@ punctuation = r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
 
 length = input('Задайте длину пароля: ')
 
-wrong_input = 'Пожалуйста, задаqте натуральное число не меньше 4'
-if not length.isnumeric():
-    print(wrong_input)
-    exit()
+while not length.isnumeric() or int(length) < 4:
+    length = input('Пожалуйста, задаqте натуральное число не меньше 4: ')
 length = int(length)
-if length < 4:
-    print(wrong_input)
-    exit()
+
 
 main_length = length // 4
 rest_of_length = length % 4
