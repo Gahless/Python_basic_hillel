@@ -47,6 +47,7 @@ while final_result == None:
             continue
         if int(move) not in range(1, 10):
             print('Вы должны ввести число соответствующее номеру ячейки')
+            continue
 
         cell_found = False
         for y, y_value in enumerate(default_map):
