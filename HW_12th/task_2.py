@@ -1,6 +1,7 @@
 
 import copy
 import json
+from typing import Dict, Union
 
 A = {
     'key1.1': 'value1.1',
@@ -25,19 +26,21 @@ B = {
     'common_key4': 'common_value2.4'
 }
 
+# Основа третьего словаря - наибольший
 C_is_A = False
 if len(A) >= len(B):
-    C = copy.deepcopy(A)
+    C: Dict[str, Union[str, list]] = copy.deepcopy(A)  # Dict чтобы убрать warning
     smaller_dict = copy.deepcopy(B)
     C_is_A = True
 else:
-    C = copy.deepcopy(B)
+    C: Dict[str, Union[str, list]] = copy.deepcopy(B)
     smaller_dict = copy.deepcopy(A)
 
+# Добавление к основе второго словаря так, чтобы чтобы общие значения словаря "А" всегдя были первыми
 if C_is_A:
     for key in smaller_dict:
         if key in C:
-            C[key] = [C[key], smaller_dict[key]]  # А как это выделение убрать? У меня так и не получилось
+            C[key] = [C[key], smaller_dict[key]]
             continue
         C[key] = smaller_dict[key]
 else:
@@ -56,4 +59,5 @@ with open('task_2.json', 'w') as f:
 Пытался оптимизировать код как мог
 Чтобы к большему словарю добавлялся меньший, но у общих ключей значение первого словаря всегда было первым
 Сначала хотел сделать один цикл и запихнуть в него два if-а, но это вызвало бы больше операций чем два цикла под if-ом
+но код в итоге вышел в 3 раза больше чем мог бы. Не знаю стоит ли оно того
 '''
