@@ -27,8 +27,5 @@ dict_list = [
 with open('task_1.txt', 'wb') as f:
     pickle.dump(dict_list, f)
 
-
 with open('task_1.txt', 'rb') as f:
-    data = pickle.load(f)
-    print(data)
-
+    print(pickle.load(f))
