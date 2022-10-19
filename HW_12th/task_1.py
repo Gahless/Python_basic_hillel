@@ -24,11 +24,11 @@ dict_list = [
     }
 ]
 
-f = open('task_1.txt', 'wb')
-pickle.dump(dict_list, f)
-f.close()
+with open('task_1.txt', 'wb') as f:
+    pickle.dump(dict_list, f)
 
-f = open('task_1.txt', 'rb')
-data = pickle.load(f)
-print(data)
-f.close()
+
+with open('task_1.txt', 'rb') as f:
+    data = pickle.load(f)
+    print(data)
+

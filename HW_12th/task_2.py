@@ -1,5 +1,6 @@
 
 import copy
+import json
 
 A = {
     'key1.1': 'value1.1',
@@ -47,7 +48,9 @@ else:
         C[key] = smaller_dict[key]
 
 
-print(C)
+with open('task_2.json', 'w') as f:
+    f.write(json.dumps(C))
+
 
 '''
 Пытался оптимизировать код как мог
