@@ -2,17 +2,19 @@
 def arguments_validate(lst, *positions):
     for pos in positions:  # Валидатор pos (целый int больше 0)
         if (not isinstance(pos, int)) or pos % 1 != 0 or pos < 1:
-            raise ValueError('el_delete(lst, pos"), pos expected to be an integer and bigger than 0')
+            raise ValueError('pos expected to be an integer and bigger than 0')
 
     for el in lst:  # Валидатор элементов lst (только словари, только имеющие ключи position и name)
         if not isinstance(el, dict):
-            raise ValueError(f'"{el}" is wrong element. el_delete(lst, pos"),'
+            raise ValueError(f'"{el}" is wrong element in lst),'
                              f'"lst" expected to contain only dictionaries')
         if el.get('position') is None or el.get('name') is None:
             raise ValueError(f'{el} expected to contain key "position" and key "name"')
 
 
-def el_delete(lst: list, pos: int = 1):
+def el_delete(lst: list, pos='last'):
+    if pos == 'last':
+        pos = len(lst)
     arguments_validate(lst, pos)
 
     pos -= 1
@@ -23,7 +25,9 @@ def el_delete(lst: list, pos: int = 1):
     return lst
 
 
-def el_insert(name, lst: list, pos: int):
+def el_insert(name, lst: list, pos='last'):
+    if pos == 'last':
+        pos = len(lst) + 1
     arguments_validate(lst, pos)
 
     lst.insert(pos - 1, {'name': name, 'position': pos})
