@@ -11,17 +11,17 @@ if data['settings']['число игроков'][0] == '1':
     player2 = 'computer'
 
 
-def roll():
+def roll():  # рандом тру или фолс
     return random.choice([True, False])
 
 
-def _input():
+def _input():  # заменяет все инпуты
     global user_input
     user_input = input('>>>')
     user_input = user_input.lower()
 
 
-def menu():
+def menu():  # начальный экран
     print('''Добро пожаловать в игру "Крестики-нолики"''')
     print('''Для просмотра правил введите "rules"
 Для изменения настроек введите "settings"
@@ -29,7 +29,7 @@ def menu():
 \nДля начала игры введите "start"''')
 
 
-def rules():
+def rules():  # правила игры
     print('''Правила игры:
 Размер поля - 3 на 3 клетки. гроки по очереди ставят свой символ (крестик или нолик) на незанятю клетку поля,
 крестики всегда ходят первыми. Побеждает первый игрок собравший ряд из трех свох символов (по горизонтали,
@@ -39,7 +39,7 @@ def rules():
     menu()
 
 
-def help():
+def help():  # список команд доступных игроку
     print('''Список всех команд:
 help - показать все команды
 menu - вернуться в начальное меню
@@ -49,12 +49,11 @@ start - начать игру
 restart - перезапустить игру
 score - показать счет с компьютером
 delete_score - сбросить счет с компьютером
-rename - поменять имя
 exit - закрыть программу
 ''')
 
 
-def settings_change():
+def settings_change():  # изменение пользователем настроек игры
     global player1, player2
     _input()
 
@@ -80,7 +79,7 @@ def settings_change():
         player2 = 'computer'
 
 
-def settings():
+def settings():  # вход пользователя в настройки
     global data, user_input
 
     user_input = '---'
@@ -94,7 +93,7 @@ def settings():
     exec(f'{user_input}()')
 
 
-def score():
+def score():  # вывод счета с компьютером пользователю
     global data
     for difficulties in data['score']:
         print(f'{difficulties}: | ', end='')
@@ -103,7 +102,7 @@ def score():
         print()
 
 
-def delete_score():
+def delete_score():  # обнуление счета с компьютером и вывод его пользователю
     data['score'] = {
         'сложность 1': {'Побед': 0, 'Поражений': 0, 'Ничьих': 0},
         'сложность 2': {'Побед': 0, 'Поражений': 0, 'Ничьих': 0},
@@ -115,18 +114,15 @@ def delete_score():
     score()
 
 
-game_in_progress = False
+game_in_progress = False  # нужна для активации цикла самой игры и выхода из него
 
 
-def start():
+def start():  # активирует цикл игры
     global game_in_progress
     game_in_progress = True
 
 
-def restart():
-    exec('break')
-
-
+#  используеммые переменные
 user_input = ''
 commands = ['help', 'menu', 'rules', 'settings', 'start', 'restart', 'score', 'exit', 'delete_score']
 
@@ -137,9 +133,10 @@ map = ''
 cross = []
 zero = []
 win_combs = []
+menu()
 
 
-def default_values():
+def default_values():  # сброс значений используеммых в самой игре
     global map_vals, remaining_vals, move, cross, zero
     map_vals = '123456789'
     remaining_vals = '123456789'
@@ -152,12 +149,12 @@ def default_values():
     map_build(map_vals)
 
 
-def map_build(map_values):
+def map_build(map_values):  # создает карту для удобного вывода
     global map
     map = (map_values[0:3], map_vals[3:6], map_vals[6:10])
 
 
-def show_map():
+def show_map():  # выводит карту
     global map
     for strng in map:
         print(strng[0], end='  ')
@@ -165,7 +162,7 @@ def show_map():
         print(strng[2])
 
 
-def win_combs_build():
+def win_combs_build():  # строит комбинации возможных побед
     global win_combs, map_vals
     win_combs = [
         f'{map_vals[0]}{map_vals[1]}{map_vals[2]}',
@@ -179,7 +176,7 @@ def win_combs_build():
     ]
 
 
-def player_move(plr, char_, ):
+def player_move(plr, char_, ):  # ход игроков, ручной
     global map, map_vals, remaining_vals, move
 
     print(f'{plr}, ваш ход! Выберите куда поставить свой {char_}\n')
@@ -209,7 +206,7 @@ def player_move(plr, char_, ):
             print('Неизвестная ячейка или команда! Напишите "help" чтобы узнать все доступные команды')
 
 
-def computer_move(char_):
+def computer_move(char_):  # ход компьютера (автоматический), для сложности 1 - 100% случайный, для сложности 2 - 50%
     global map_vals, remaining_vals, data
     time.sleep(1)
 
@@ -243,7 +240,7 @@ def computer_move(char_):
     remaining_vals = remaining_vals.replace(_move, '')
 
 
-def win_check(plr, char_):
+def win_check(plr, char_):  # проверяет есть ли в возможных победных комбинацияй победная и записывает счет проти компа
     global win_combs, data, game_in_progress, player2
 
     win_combs_build()
@@ -267,10 +264,6 @@ def win_check(plr, char_):
             data["score"][f'сложность {data["settings"]["сложность"][0]}']['Ничьих'] += 1
 
 
-menu()
-
-
-# todo: проверка на победу
 while True:
     _input()
     if user_input == 'restart':
@@ -284,15 +277,15 @@ while True:
         default_values()
 
     while game_in_progress:
-        if move % 2 == 1:
+        if move % 2 == 1:  # определение хода
             player, char = cross
         else:
             player, char = zero
 
-        if player == 'computer':
+        if player == 'computer':  # передача хода компу или игроку
             computer_move(char)
         else:
             player_move(player, char)
-        map_build(map_vals)
+        map_build(map_vals)  #
         win_check(player, char)
         move += 1
