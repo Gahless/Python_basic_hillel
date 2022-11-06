@@ -10,6 +10,7 @@ player2 = 'player2'
 if data['settings']['число игроков'][0] == '1':
     player2 = 'computer'
 
+
 def roll():
     return random.choice([True, False])
 
@@ -121,11 +122,12 @@ def start():
     global game_in_progress
     game_in_progress = True
 
+
 def restart():
     exec('break')
 
-user_input = ''
 
+user_input = ''
 commands = ['help', 'menu', 'rules', 'settings', 'start', 'restart', 'score', 'exit', 'delete_score']
 
 map_vals = ''
@@ -280,7 +282,6 @@ while True:
 
     if game_in_progress:
         default_values()
-
 
     while game_in_progress:
         if move % 2 == 1:
