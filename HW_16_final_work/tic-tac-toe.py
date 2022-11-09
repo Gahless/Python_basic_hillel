@@ -208,7 +208,6 @@ def player_move(plr, char_, ):  # ход игроков, ручной
 
 def computer_move(char_):  # ход компьютера (автоматический), для сложности 1 - 100% случайный, для сложности 2 - 50%
     global map_vals, remaining_vals, data
-    time.sleep(1)
 
     map_build(map_vals)
     _move = random.choice(remaining_vals)
